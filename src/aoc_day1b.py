@@ -3,6 +3,8 @@ Solving Advent of Code 2020 day 1 part b:
 In your expense report, what is the product of the three entries that sum to 2020?
 """
 
+import itertools
+
 def tom1(fname):
     f = open(fname,'r')
     input = f.readlines()
@@ -18,3 +20,12 @@ def tom1(fname):
                     val3 = input[n3]
                     if val1+val2+val3 == 2020:
                         return val1*val2*val3
+
+def roald1(fname):
+    with open(fname) as f:
+        data = f.readlines()
+    data = map(int, data)
+
+    for nums in itertools.combinations(data, 3):
+        if sum(nums) == 2020:
+            return nums[0] * nums[1] * nums[2]
