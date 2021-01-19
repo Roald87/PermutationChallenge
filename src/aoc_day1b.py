@@ -29,3 +29,11 @@ def roald1(fname):
     for nums in itertools.combinations(data, 3):
         if sum(nums) == 2020:
             return nums[0] * nums[1] * nums[2]
+
+def tom2(fname):
+    f = open(fname, 'r')
+    input = f.readlines()
+    input = [int(line.strip()) for line in input]
+    f.close()
+    sumvals = [x*y*z for x in input for y in input for z in input if x+y+z == 2020]
+    return sumvals[0]
