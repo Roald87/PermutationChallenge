@@ -37,3 +37,14 @@ def tom2(fname):
     f.close()
     sumvals = [x*y*z for x in input for y in input for z in input if x+y+z == 2020]
     return sumvals[0]
+
+def roald2(fname):
+    with open(fname) as f:
+        data = f.readlines()
+    data = [int(i) for i in data]
+
+    for num1 in data:
+        for num2 in set(data) - {num1}:
+            for num3 in set(data) - {num1, num2}:
+                if num1 + num2 + num3 == 2020:
+                    return num1 * num2 * num3
