@@ -4,6 +4,7 @@ In your expense report, what is the product of the three entries that sum to 202
 """
 
 import itertools
+import numpy as np
 
 def tom1(fname):
     f = open(fname,'r')
@@ -48,3 +49,20 @@ def roald2(fname):
             for num3 in set(data) - {num1, num2}:
                 if num1 + num2 + num3 == 2020:
                     return num1 * num2 * num3
+
+def tom3(fname):
+    with open(fname) as f:
+        data = f.readlines()
+    data = [int(i) for i in input]
+    inp_len = len(data)
+    data_array = np.zeros((inp_len, inp_len, inp_len))
+    for x in range(np.shape(data_array)[0]):
+        for y in range(np.shape(data_array)[1]):
+            for z in range(np.shape(data_array)[2]):
+                data_array[x, y, z] = data[x] + data[y] + data[z]
+    indices = np.where(data_array == 2020)
+    indices = set(indices[0])
+    answer = 1
+    for ind in indices:
+        answer *= data[ind]
+    return answer
