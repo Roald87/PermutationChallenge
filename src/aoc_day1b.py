@@ -66,3 +66,15 @@ def tom3(fname):
     for ind in indices:
         answer *= numbers[ind]
     return answer
+
+def roald3(fname):
+    with open(fname) as f:
+        numbers = list(map(int, f.readlines()))
+
+    numbers.sort()
+
+    for num1 in numbers:
+        for num2 in reversed(numbers):
+            for num3 in numbers:
+                if num1 + num2 + num3 == 2020:
+                    return num1 * num2 * num3
