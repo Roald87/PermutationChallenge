@@ -5,6 +5,9 @@ In your expense report, what is the product of the three entries that sum to 202
 
 import itertools
 import numpy as np
+import random
+
+random.seed(42)
 
 def tom1(fname):
     f = open(fname,'r')
@@ -92,3 +95,13 @@ def tom4(fname):
                     break
                 if num1 + num2 + num3 == 2020:
                     return num1 * num2 * num3
+
+def roald4(fname):
+    with open(fname) as f:
+        numbers = list(map(int, f.readlines()))
+
+    selection = [0]
+    while sum(selection) != 2020:
+        selection = random.sample(numbers, 3)
+
+    return np.product(selection)
