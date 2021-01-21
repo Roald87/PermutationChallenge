@@ -78,3 +78,17 @@ def roald3(fname):
             for num3 in numbers:
                 if num1 + num2 + num3 == 2020:
                     return num1 * num2 * num3
+
+def tom4(fname):
+    with open(fname) as f:
+        numbers = list(map(int, f.readlines()))
+    numbers.sort()
+    for num1 in numbers: #15.6ms unreversed, 0ms reversed
+        for num2 in numbers:
+            if num1 + num2 > 2020:
+                break
+            for num3 in numbers:
+                if num1 + num2 + num3 > 2020:
+                    break
+                if num1 + num2 + num3 == 2020:
+                    return num1 * num2 * num3
