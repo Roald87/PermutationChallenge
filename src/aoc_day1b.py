@@ -132,7 +132,6 @@ def roald6(fname):
                 return num1 * num2 * (2020 - (num1 + num2))
 
 def roald7(fname):
-
     with open(fname) as f:
         numbers = list(map(int, f.readlines()))
 
@@ -141,3 +140,12 @@ def roald7(fname):
     for n1, n2, n3 in iternums(numbers):
         if n1 + n2 + n3 == 2020:
             return n1 * n2 * n3
+
+def roald8(fname):
+    with open(fname) as f:
+        numbers = list(map(int, f.readlines()))
+
+    iternums = ((x, y, z) for x in numbers for y in numbers for z in numbers)
+    n1, n2, n3= tuple(filter(lambda n: n[0] + n[1] + n[2] == 2020, iternums))[0]
+
+    return n1 * n2 * n3

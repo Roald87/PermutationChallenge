@@ -6,7 +6,8 @@ from src.aoc_day1b import *
 
 class AnswerCorrect(unittest.TestCase):
     methods = [
-        tom1, roald1, tom2, roald2, tom3, roald3, tom4, roald4, roald5, roald6, roald7
+        tom1, roald1, tom2, roald2, tom3, roald3, tom4, roald4, roald5, roald6, roald7,
+        roald8,
     ]
     filename = "aoc_20201b_input.txt"
 
