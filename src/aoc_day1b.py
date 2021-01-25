@@ -117,3 +117,16 @@ def roald5(fname):
     for a, b, c in iternums:
         if a + b + c == 2020:
             return a * b * c
+
+def roald6(fname):
+    '''This method eliminates the inner loop. It will be faster than tom4 if the inner
+    loop takes more time than constructing a set. The set lookup itself is is O(1).'''
+    with open(fname) as f:
+        numbers = list(map(int, f.readlines()))
+
+    numbers.sort()
+    num_set = set(numbers)
+    for num1 in numbers:
+        for num2 in numbers:
+            if 2020 - (num1 + num2) in num_set:
+                return num1 * num2 * (2020 - (num1 + num2))
