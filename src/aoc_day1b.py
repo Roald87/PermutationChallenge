@@ -149,3 +149,4 @@ def roald8(fname):
     n1, n2, n3= tuple(filter(lambda n: n[0] + n[1] + n[2] == 2020, iternums))[0]
 
     return n1 * n2 * n3
+
