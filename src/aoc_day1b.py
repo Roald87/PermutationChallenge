@@ -105,3 +105,15 @@ def roald4(fname):
         selection = random.sample(numbers, 3)
 
     return np.product(selection)
+
+def roald5(fname):
+    '''Very similar as tom2, but due to the fact that a generator comprehension is used
+    instead of a list comprehension, it is a bit faster.'''
+    with open(fname) as f:
+        numbers = list(map(int, f.readlines()))
+
+    iternums = ((x, y, z) for x in numbers for y in numbers for z in numbers)
+
+    for a, b, c in iternums:
+        if a + b + c == 2020:
+            return a * b * c

@@ -5,7 +5,7 @@ from src.aoc_day1b import *
 
 
 class AnswerCorrect(unittest.TestCase):
-    methods = [tom1, roald1, tom2, roald2, tom3, roald3,tom4, roald4]
+    methods = [tom1, roald1, tom2, roald2, tom3, roald3, tom4, roald4, roald5]
     filename = "aoc_20201b_input.txt"
 
     def test_check_answers(self):
