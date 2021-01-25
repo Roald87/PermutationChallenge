@@ -130,3 +130,14 @@ def roald6(fname):
         for num2 in numbers:
             if 2020 - (num1 + num2) in num_set:
                 return num1 * num2 * (2020 - (num1 + num2))
+
+def roald7(fname):
+
+    with open(fname) as f:
+        numbers = list(map(int, f.readlines()))
+
+    iternums = lambda x: ((a, b, c) for a in x for b in x for c in x)
+
+    for n1, n2, n3 in iternums(numbers):
+        if n1 + n2 + n3 == 2020:
+            return n1 * n2 * n3
