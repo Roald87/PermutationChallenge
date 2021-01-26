@@ -1,17 +1,16 @@
 import os
 import unittest
 import time
+from inspect import getmembers, isfunction
 
-from src.aoc_day1b import *
+import src.aoc_2020_1b as aoc_2020_1b
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class AnswerCorrect(unittest.TestCase):
-    methods = [
-        tom1, roald1, tom2, roald2, tom3, roald3, tom4, roald4, roald5, roald6, roald7,
-        roald8,
-    ]
-    filename = os.path.join(THIS_DIR, "aoc_20201b_input.txt")
+
+    methods = [member[1] for member in getmembers(aoc_2020_1b, isfunction)]
+    filename = os.path.join(THIS_DIR, "aoc_2020_1b_input.txt")
 
     def test_check_answers(self):
         execution_times = {}
