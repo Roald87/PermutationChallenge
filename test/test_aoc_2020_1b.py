@@ -19,7 +19,7 @@ class AnswerCorrect(unittest.TestCase):
             answer = method(self.filename)
             elapsed_time = time.process_time() - start
             execution_times[method.__name__] = round(elapsed_time*1e3, 3)
-            self.assertEqual(answer, 79734368, f"Method {method.__name__} failed")
+            self.assertEqual(79734368, answer, f"Method {method.__name__} failed")
 
         print("Execution times (ms):")
         sorted_execution_times = dict(sorted(execution_times.items(), key=lambda item: item[1]))
