@@ -46,3 +46,9 @@ def tom1(passphrases: list):
         if phrase_valid:
             valid +=1
     return valid
+
+def roald2(passphrases: list):
+    return sum(
+        len(set(map("".join, map(sorted, phrase.split())))) == len(phrase.split())
+        for phrase in passphrases
+    )
