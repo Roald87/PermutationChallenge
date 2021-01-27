@@ -27,7 +27,7 @@ class MyTestCase(unittest.TestCase):
             execution_times[method.__name__] = round(elapsed_time * 1e3, 3)
             self.assertEqual(186, answer, f"Method {method.__name__} failed")
 
-        print("Execution times (ms):")
+        print("Execution times AoC 2017 day 4 part b (ms):")
         sorted_execution_times = dict(sorted(execution_times.items(), key=lambda item: item[1]))
 
         for method, t in sorted_execution_times.items():
