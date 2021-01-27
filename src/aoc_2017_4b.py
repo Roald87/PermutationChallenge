@@ -17,6 +17,7 @@ For example:
 
 Under this new system policy, how many passphrases are valid?
 """
+from itertools import permutations
 
 def roald1(passphrases: list):
     valid = 0
@@ -30,4 +31,17 @@ def roald1(passphrases: list):
         if len(to_check) == len(set(to_check)):
             valid += 1
 
+    return valid
+
+def tom1(passphrases: list):
+    valid = 0
+    for phrase in passphrases:
+        word_valid = 0
+        for word in phrase.split(' '):
+            anagrams = [''.join(anagram) for anagram in permutations(word)]
+            to_check = [el for el in phrase.split(' ') if el != word and el not in anagrams]
+            if len(to_check) == len(phrase.split(' '))-1:
+                word_valid += 1
+        if word_valid == len(phrase.split(' ')):
+            valid +=1
     return valid
