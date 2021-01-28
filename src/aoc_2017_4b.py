@@ -96,7 +96,6 @@ def tom3(passphrases: list):
             if product in ordinal_words:
                 valid_phrases -= 1
                 break
-            else:
-                ordinal_words.add(product)
+            ordinal_words.add(product)
 
     return valid_phrases
