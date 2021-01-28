@@ -17,7 +17,8 @@ For example:
 
 Under this new system policy, how many passphrases are valid?
 """
-from itertools import permutations
+from itertools import permutations,combinations
+from collections import Counter
 
 def roald1(passphrases: list):
     valid = 0
@@ -52,3 +53,15 @@ def roald2(passphrases: list):
         len(set(map("".join, map(sorted, phrase.split())))) == len(phrase.split())
         for phrase in passphrases
     )
+
+def tom2(passphrases: list):
+
+    def anagram_check(phrase):
+        counter_list = [Counter(word) for word in phrase.split(' ')]
+        counter_comb = combinations(counter_list, 2)
+        for count1, count2 in counter_comb:
+            if count1 == count2:
+                return False
+        return True
+    #len(filter(anagram_check,passphrases)) did not work, filter has no len?
+    return len([phrase for phrase in passphrases if anagram_check(phrase)])
