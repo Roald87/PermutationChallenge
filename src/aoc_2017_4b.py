@@ -20,6 +20,7 @@ Under this new system policy, how many passphrases are valid?
 from itertools import permutations,combinations
 from collections import Counter
 import numpy as np
+import hashlib
 
 def roald1(passphrases: list):
     valid = 0
@@ -73,6 +74,24 @@ def roald3(passphrases: list):
         ordinal_words = set()
         for word in phrase.split():
             product = np.product([ord(char) for char in word])
+
+            if product in ordinal_words:
+                valid_phrases -= 1
+                break
+            else:
+                ordinal_words.add(product)
+
+    return valid_phrases
+
+def tom3(passphrases: list):
+    valid_phrases = len(passphrases)
+    for phrase in passphrases:
+        ordinal_words = set()
+        for word in phrase.split():
+            enc_list = [char.encode() for char in word]
+            hash_list = [hashlib.md5(enc_char) for enc_char in enc_list]
+            int_list = [int(hash_el.hexdigest(),16) for hash_el in hash_list]
+            product = np.product(int_list)
 
             if product in ordinal_words:
                 valid_phrases -= 1
