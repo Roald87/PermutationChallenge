@@ -19,6 +19,7 @@ Under this new system policy, how many passphrases are valid?
 """
 from itertools import permutations,combinations
 from collections import Counter
+import numpy as np
 
 def roald1(passphrases: list):
     valid = 0
@@ -65,3 +66,18 @@ def tom2(passphrases: list):
         return True
     #len(filter(anagram_check,passphrases)) did not work, filter has no len?
     return len([phrase for phrase in passphrases if anagram_check(phrase)])
+
+def roald3(passphrases: list):
+    valid_phrases = len(passphrases)
+    for phrase in passphrases:
+        ordinal_words = set()
+        for word in phrase.split():
+            product = np.product([ord(char) for char in word])
+
+            if product in ordinal_words:
+                valid_phrases -= 1
+                break
+            else:
+                ordinal_words.add(product)
+
+    return valid_phrases
