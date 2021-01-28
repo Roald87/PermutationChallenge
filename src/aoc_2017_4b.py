@@ -98,3 +98,12 @@ def tom3(passphrases: list):
             ordinal_words.add(product)
 
     return valid_phrases
+
+def roald4(passphrases: list):
+    valid_phrases = 0
+    for phrase in passphrases:
+        anagram_count = Counter("".join(sorted(word)) for word in phrase.split())
+        # True = 1 and False = 0
+        valid_phrases +=  anagram_count.most_common(1)[0][1] == 1
+
+    return valid_phrases
