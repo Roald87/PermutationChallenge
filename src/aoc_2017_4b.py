@@ -17,38 +17,43 @@ For example:
 
 Under this new system policy, how many passphrases are valid?
 """
-from itertools import permutations,combinations
+from itertools import permutations, combinations
 from collections import Counter
 import numpy as np
 import hashlib
+
 
 def roald1(passphrases: list):
     valid = 0
 
     for phrase in passphrases:
         to_check = []
-        for word in phrase.split(' '):
+        for word in phrase.split(" "):
             chars = [char for char in word]
-            to_check += [''.join(sorted(chars))]
+            to_check += ["".join(sorted(chars))]
 
         if len(to_check) == len(set(to_check)):
             valid += 1
 
     return valid
 
+
 def tom1(passphrases: list):
     valid = 0
     for phrase in passphrases:
         phrase_valid = True
-        for word in phrase.split(' '):
-            anagrams = [''.join(anagram) for anagram in permutations(word)]
-            to_check = [el for el in phrase.split(' ') if el != word and el not in anagrams]
-            if len(to_check) != len(phrase.split(' '))-1:
+        for word in phrase.split(" "):
+            anagrams = ["".join(anagram) for anagram in permutations(word)]
+            to_check = [
+                el for el in phrase.split(" ") if el != word and el not in anagrams
+            ]
+            if len(to_check) != len(phrase.split(" ")) - 1:
                 phrase_valid = False
                 break
         if phrase_valid:
-            valid +=1
+            valid += 1
     return valid
+
 
 def roald2(passphrases: list):
     return sum(
@@ -56,17 +61,19 @@ def roald2(passphrases: list):
         for phrase in passphrases
     )
 
-def tom2(passphrases: list):
 
+def tom2(passphrases: list):
     def anagram_check(phrase):
-        counter_list = [Counter(word) for word in phrase.split(' ')]
+        counter_list = [Counter(word) for word in phrase.split(" ")]
         counter_comb = combinations(counter_list, 2)
         for count1, count2 in counter_comb:
             if count1 == count2:
                 return False
         return True
-    #len(filter(anagram_check,passphrases)) did not work, filter has no len?
+
+    # len(filter(anagram_check,passphrases)) did not work, filter has no len?
     return len([phrase for phrase in passphrases if anagram_check(phrase)])
+
 
 def roald3(passphrases: list):
     valid_phrases = len(passphrases)
@@ -82,6 +89,7 @@ def roald3(passphrases: list):
 
     return valid_phrases
 
+
 def tom3(passphrases: list):
     valid_phrases = len(passphrases)
     for phrase in passphrases:
@@ -89,7 +97,7 @@ def tom3(passphrases: list):
         for word in phrase.split():
             enc_list = [char.encode() for char in word]
             hash_list = [hashlib.md5(enc_char) for enc_char in enc_list]
-            int_list = [int(hash_el.hexdigest(),16) for hash_el in hash_list]
+            int_list = [int(hash_el.hexdigest(), 16) for hash_el in hash_list]
             product = np.product(int_list)
 
             if product in ordinal_words:
@@ -99,11 +107,12 @@ def tom3(passphrases: list):
 
     return valid_phrases
 
+
 def roald4(passphrases: list):
     valid_phrases = 0
     for phrase in passphrases:
         anagram_count = Counter("".join(sorted(word)) for word in phrase.split())
         # True = 1 and False = 0
-        valid_phrases +=  anagram_count.most_common(1)[0][1] == 1
+        valid_phrases += anagram_count.most_common(1)[0][1] == 1
 
     return valid_phrases

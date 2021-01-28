@@ -9,8 +9,9 @@ import random
 
 random.seed(42)
 
+
 def tom1(fname):
-    f = open(fname,'r')
+    f = open(fname, "r")
     numbers = f.readlines()
     numbers = [int(line.strip()) for line in numbers]
     f.close()
@@ -22,8 +23,9 @@ def tom1(fname):
                     val1 = numbers[n1]
                     val2 = numbers[n2]
                     val3 = numbers[n3]
-                    if val1+val2+val3 == 2020:
-                        return val1*val2*val3
+                    if val1 + val2 + val3 == 2020:
+                        return val1 * val2 * val3
+
 
 def roald1(fname):
     with open(fname) as f:
@@ -34,13 +36,21 @@ def roald1(fname):
         if sum(nums) == 2020:
             return nums[0] * nums[1] * nums[2]
 
+
 def tom2(fname):
-    f = open(fname, 'r')
+    f = open(fname, "r")
     numbers = f.readlines()
     numbers = [int(line.strip()) for line in numbers]
     f.close()
-    sumvals = [x*y*z for x in numbers for y in numbers for z in numbers if x+y+z == 2020]
+    sumvals = [
+        x * y * z
+        for x in numbers
+        for y in numbers
+        for z in numbers
+        if x + y + z == 2020
+    ]
     return sumvals[0]
+
 
 def roald2(fname):
     with open(fname) as f:
@@ -52,6 +62,7 @@ def roald2(fname):
             for num3 in set(numbers) - {num1, num2}:
                 if num1 + num2 + num3 == 2020:
                     return num1 * num2 * num3
+
 
 def tom3(fname):
     with open(fname) as f:
@@ -70,6 +81,7 @@ def tom3(fname):
         answer *= numbers[ind]
     return answer
 
+
 def roald3(fname):
     with open(fname) as f:
         numbers = list(map(int, f.readlines()))
@@ -82,11 +94,12 @@ def roald3(fname):
                 if num1 + num2 + num3 == 2020:
                     return num1 * num2 * num3
 
+
 def tom4(fname):
     with open(fname) as f:
         numbers = list(map(int, f.readlines()))
     numbers.sort()
-    for num1 in numbers: #15.6ms unreversed, 0ms reversed
+    for num1 in numbers:  # 15.6ms unreversed, 0ms reversed
         for num2 in numbers:
             if num1 + num2 > 2020:
                 break
@@ -95,6 +108,7 @@ def tom4(fname):
                     break
                 if num1 + num2 + num3 == 2020:
                     return num1 * num2 * num3
+
 
 def roald4(fname):
     with open(fname) as f:
@@ -106,9 +120,10 @@ def roald4(fname):
 
     return np.product(selection)
 
+
 def roald5(fname):
-    '''Very similar as tom2, but due to the fact that a generator comprehension is used
-    instead of a list comprehension, it is a bit faster.'''
+    """Very similar as tom2, but due to the fact that a generator comprehension is used
+    instead of a list comprehension, it is a bit faster."""
     with open(fname) as f:
         numbers = list(map(int, f.readlines()))
 
@@ -118,9 +133,10 @@ def roald5(fname):
         if a + b + c == 2020:
             return a * b * c
 
+
 def roald6(fname):
-    '''This method eliminates the inner loop. It will be faster than tom4 if the inner
-    loop takes more time than constructing a set. The set lookup itself is is O(1).'''
+    """This method eliminates the inner loop. It will be faster than tom4 if the inner
+    loop takes more time than constructing a set. The set lookup itself is is O(1)."""
     with open(fname) as f:
         numbers = list(map(int, f.readlines()))
 
@@ -130,6 +146,7 @@ def roald6(fname):
         for num2 in numbers:
             if 2020 - (num1 + num2) in num_set:
                 return num1 * num2 * (2020 - (num1 + num2))
+
 
 def roald7(fname):
     with open(fname) as f:
@@ -141,12 +158,12 @@ def roald7(fname):
         if n1 + n2 + n3 == 2020:
             return n1 * n2 * n3
 
+
 def roald8(fname):
     with open(fname) as f:
         numbers = list(map(int, f.readlines()))
 
     iternums = ((x, y, z) for x in numbers for y in numbers for z in numbers)
-    n1, n2, n3= tuple(filter(lambda n: n[0] + n[1] + n[2] == 2020, iternums))[0]
+    n1, n2, n3 = tuple(filter(lambda n: n[0] + n[1] + n[2] == 2020, iternums))[0]
 
     return n1 * n2 * n3
-

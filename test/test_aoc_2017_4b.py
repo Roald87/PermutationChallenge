@@ -5,14 +5,17 @@ from inspect import getmembers, isfunction
 
 import src.aoc_2017_4b as aoc_2017_4b
 
+
 def get_passphrases(filename):
     with open(filename) as f:
         data = f.read().splitlines()
 
     return data
 
+
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 passphrases = get_passphrases(os.path.join(THIS_DIR, "aoc_2017_4b_input.txt"))
+
 
 class MyTestCase(unittest.TestCase):
 
@@ -28,11 +31,13 @@ class MyTestCase(unittest.TestCase):
             self.assertEqual(186, answer, f"Method {method.__name__} failed")
 
         print("Execution times AoC 2017 day 4 part b (ms):")
-        sorted_execution_times = dict(sorted(execution_times.items(), key=lambda item: item[1]))
+        sorted_execution_times = dict(
+            sorted(execution_times.items(), key=lambda item: item[1])
+        )
 
         for method, t in sorted_execution_times.items():
             print(f"{method}:\t{t}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
