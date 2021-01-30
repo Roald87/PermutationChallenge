@@ -20,6 +20,7 @@ Under this new system policy, how many passphrases are valid?
 from itertools import permutations, combinations
 from collections import Counter
 import numpy as np
+import math
 import hashlib
 
 
@@ -117,9 +118,9 @@ def roald4(passphrases: list):
 
     return valid_phrases
 
-def tom4(passphrases: list):
 
-    def anagram2(str1,str2):
+def tom4(passphrases: list):
+    def anagram2(str1, str2):
         if len(str1) != len(str2):
             return False
         for char in str1:
@@ -131,12 +132,41 @@ def tom4(passphrases: list):
     for phrase in passphrases:
         valid_phrase = True
         word_list = phrase.split()
-        for ind,word in enumerate(word_list):
+        for ind, word in enumerate(word_list):
             to_check = [word_list[i] for i in range(len(word_list)) if i != ind]
-            #first conditinoal works, second thinks more prhases are valid
-            if sum([anagram(word,check) for check in to_check]) != 0:
+            # first conditinoal works, second thinks more prhases are valid
+            if sum([anagram2(word, check) for check in to_check]) != 0:
                 valid_phrase = False
                 break
         if valid_phrase:
             valid_phrases += 1
+    return valid_phrases
+
+
+def roald5(passphrases: list):
+    """ A pure numbers approach. """
+
+    def digits(n):
+        if n > 0:
+            digits = int(math.log10(n)) + 1
+        elif n == 0:
+            digits = 1
+
+        return digits
+
+    valid_phrases = 0
+    for phrase in passphrases:
+        words = phrase.split()
+        numbers = []
+        for word in words:
+            number = 0
+            for ordinal in sorted(ord(char) for char in word):
+                if number == 0:
+                    number += ordinal
+                else:
+                    number += 10 ** digits(number) * ordinal
+            numbers.append(number)
+
+        valid_phrases += len(np.unique(numbers)) == len(numbers)
+
     return valid_phrases
