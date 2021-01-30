@@ -176,16 +176,16 @@ def tom5(passphrases: list):
     def anagram(str1, str2):
         if len(str1) != len(str2):
             return False
-        else:
-            str2 = list(str2)
-            for char in str1:
-                try:
-                    ind = str2.index(char)
-                    str2.pop(ind)
-                except (ValueError):
-                    return False
-            if not str2:  # str2 empty list
-                return True
+
+        str2 = list(str2)
+        for char in str1:
+            try:
+                ind = str2.index(char)
+                str2.pop(ind)
+            except (ValueError):
+                return False
+        if not str2:  # str2 empty list
+            return True
 
     valid_phrases = 0
     for phrase in passphrases:
