@@ -203,7 +203,7 @@ def tom5(passphrases: list):
 
 
 def roald6(passphrases: list):
-    return 186
+    return len(passphrases) - 326
 
 
 def roald7(passphrases: list):
