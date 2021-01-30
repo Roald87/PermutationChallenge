@@ -30,8 +30,7 @@ def roald1(passphrases: list):
     for phrase in passphrases:
         to_check = []
         for word in phrase.split(" "):
-            chars = [char for char in word]
-            to_check += ["".join(sorted(chars))]
+            to_check += ["".join(sorted(word))]
 
         if len(to_check) == len(set(to_check)):
             valid += 1
