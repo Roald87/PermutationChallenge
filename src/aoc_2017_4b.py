@@ -116,3 +116,27 @@ def roald4(passphrases: list):
         valid_phrases += anagram_count.most_common(1)[0][1] == 1
 
     return valid_phrases
+
+def tom4(passphrases: list):
+
+    def anagram2(str1,str2):
+        if len(str1) != len(str2):
+            return False
+        for char in str1:
+            if char not in str2:
+                return False
+        return True
+
+    valid_phrases = 0
+    for phrase in passphrases:
+        valid_phrase = True
+        word_list = phrase.split()
+        for ind,word in enumerate(word_list):
+            to_check = [word_list[i] for i in range(len(word_list)) if i != ind]
+            #first conditinoal works, second thinks more prhases are valid
+            if sum([anagram(word,check) for check in to_check]) != 0:
+                valid_phrase = False
+                break
+        if valid_phrase:
+            valid_phrases += 1
+    return valid_phrases
