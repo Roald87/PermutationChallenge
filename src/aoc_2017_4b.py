@@ -199,8 +199,43 @@ def tom5(passphrases: list):
                 break
         if valid_phrase:
             valid_phrases += 1
+
     return valid_phrases
 
 
 def roald6(passphrases: list):
     return 186
+
+
+def roald7(passphrases: list):
+    def anagram(str1, str2):
+        if len(str1) != len(str2):
+            return False
+        else:
+            for char in str1:
+                str2 = str2.replace(char, "", 1)
+
+            return len(str2) == 0
+
+    valid_phrases = len(passphrases)
+    for phrase in passphrases:
+        words = phrase.split()
+        goto_next_phrase = False
+
+        # Some phrases contain the same word twice
+        if len(set(words)) != len(words):
+            valid_phrases -= 1
+            continue
+
+        # If that is not the case, check if it contains an anagram
+        for word1 in words:
+            if goto_next_phrase:
+                break
+
+            for word2 in set(words) - {word1}:
+                if anagram(word1, word2):
+                    valid_phrases -= 1
+                    goto_next_phrase = True
+                    break
+
+    return valid_phrases
