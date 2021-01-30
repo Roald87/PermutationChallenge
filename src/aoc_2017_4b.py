@@ -120,7 +120,7 @@ def roald4(passphrases: list):
 
 
 def tom4(passphrases: list):
-    def anagram2(str1, str2):
+    def anagram(str1, str2):
         if len(str1) != len(str2):
             return False
         for char in str1:
@@ -135,7 +135,7 @@ def tom4(passphrases: list):
         for ind, word in enumerate(word_list):
             to_check = [word_list[i] for i in range(len(word_list)) if i != ind]
             # first conditinoal works, second thinks more prhases are valid
-            if sum([anagram2(word, check) for check in to_check]) != 0:
+            if sum([anagram(word, check) for check in to_check]) != 0:
                 valid_phrase = False
                 break
         if valid_phrase:
@@ -169,4 +169,33 @@ def roald5(passphrases: list):
 
         valid_phrases += len(np.unique(numbers)) == len(numbers)
 
+    return valid_phrases
+
+def tom5(passphrases: list):
+    def anagram(str1, str2):
+        if len(str1) != len(str2):
+            return False
+        else:
+            str2 = list(str2)
+            for char in str1:
+                try:
+                    ind = str2.index(char)
+                    str2.pop(ind)
+                except(ValueError):
+                    return False
+            if not str2: #str2 empty list
+                return True
+
+    valid_phrases = 0
+    for phrase in passphrases:
+        valid_phrase = True
+        word_list = phrase.split()
+        for ind, word in enumerate(word_list):
+            to_check = [word_list[i] for i in range(len(word_list)) if i != ind]
+            # first conditinoal works, second thinks more prhases are valid
+            if sum([anagram(word, check) for check in to_check]) != 0:
+                valid_phrase = False
+                break
+        if valid_phrase:
+            valid_phrases += 1
     return valid_phrases
