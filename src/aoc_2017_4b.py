@@ -239,3 +239,14 @@ def roald7(passphrases: list):
                     break
 
     return valid_phrases
+
+
+def roald8(passphrases: list):
+
+    passphrases_without_anagrams = filter(
+        lambda phrase: len(set("".join(sorted(word)) for word in phrase.split()))
+        == len(phrase.split()),
+        passphrases,
+    )
+
+    return len(list(passphrases_without_anagrams))
