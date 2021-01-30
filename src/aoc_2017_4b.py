@@ -211,11 +211,11 @@ def roald7(passphrases: list):
     def anagram(str1, str2):
         if len(str1) != len(str2):
             return False
-        else:
-            for char in str1:
-                str2 = str2.replace(char, "", 1)
 
-            return len(str2) == 0
+        for char in str1:
+            str2 = str2.replace(char, "", 1)
+
+        return len(str2) == 0
 
     valid_phrases = len(passphrases)
     for phrase in passphrases:
