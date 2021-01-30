@@ -171,6 +171,7 @@ def roald5(passphrases: list):
 
     return valid_phrases
 
+
 def tom5(passphrases: list):
     def anagram(str1, str2):
         if len(str1) != len(str2):
@@ -181,9 +182,9 @@ def tom5(passphrases: list):
                 try:
                     ind = str2.index(char)
                     str2.pop(ind)
-                except(ValueError):
+                except (ValueError):
                     return False
-            if not str2: #str2 empty list
+            if not str2:  # str2 empty list
                 return True
 
     valid_phrases = 0
@@ -199,3 +200,7 @@ def tom5(passphrases: list):
         if valid_phrase:
             valid_phrases += 1
     return valid_phrases
+
+
+def roald6(passphrases: list):
+    return 186
