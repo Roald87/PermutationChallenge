@@ -192,7 +192,6 @@ def tom5(passphrases: list):
         word_list = phrase.split()
         for ind, word in enumerate(word_list):
             to_check = [word_list[i] for i in range(len(word_list)) if i != ind]
-            # first conditinoal works, second thinks more prhases are valid
             if sum([anagram(word, check) for check in to_check]) != 0:
                 valid_phrase = False
                 break
