@@ -11,15 +11,14 @@ random.seed(42)
 
 
 def tom1(fname):
-    f = open(fname, "r")
-    numbers = f.readlines()
-    numbers = [int(line.strip()) for line in numbers]
-    f.close()
+    with open(fname, "r") as f:
+        numbers = f.readlines()
+        numbers = [int(line.strip()) for line in numbers]
 
     for n1 in range(len(numbers)):
         for n2 in range(len(numbers)):
             for n3 in range(len(numbers)):
-                if n1 < n2 and n1 < n3 and n2 < n3:
+                if n1 < n2 < n3:
                     val1 = numbers[n1]
                     val2 = numbers[n2]
                     val3 = numbers[n3]
@@ -38,10 +37,9 @@ def roald1(fname):
 
 
 def tom2(fname):
-    f = open(fname, "r")
-    numbers = f.readlines()
-    numbers = [int(line.strip()) for line in numbers]
-    f.close()
+    with open(fname, "r") as f:
+        numbers = f.readlines()
+        numbers = [int(line.strip()) for line in numbers]
     sumvals = [
         x * y * z
         for x in numbers

@@ -30,8 +30,7 @@ def roald1(passphrases: list):
     for phrase in passphrases:
         to_check = []
         for word in phrase.split(" "):
-            chars = [char for char in word]
-            to_check += ["".join(sorted(chars))]
+            to_check += ["".join(sorted(word))]
 
         if len(to_check) == len(set(to_check)):
             valid += 1
@@ -171,20 +170,21 @@ def roald5(passphrases: list):
 
     return valid_phrases
 
+
 def tom5(passphrases: list):
     def anagram(str1, str2):
         if len(str1) != len(str2):
             return False
-        else:
-            str2 = list(str2)
-            for char in str1:
-                try:
-                    ind = str2.index(char)
-                    str2.pop(ind)
-                except(ValueError):
-                    return False
-            if not str2: #str2 empty list
-                return True
+
+        str2 = list(str2)
+        for char in str1:
+            try:
+                ind = str2.index(char)
+                str2.pop(ind)
+            except (ValueError):
+                return False
+        if not str2:  # str2 empty list
+            return True
 
     valid_phrases = 0
     for phrase in passphrases:
@@ -197,4 +197,54 @@ def tom5(passphrases: list):
                 break
         if valid_phrase:
             valid_phrases += 1
+
     return valid_phrases
+
+
+def roald6(passphrases: list):
+    return len(passphrases) - 326
+
+
+def roald7(passphrases: list):
+    def anagram(str1, str2):
+        if len(str1) != len(str2):
+            return False
+
+        for char in str1:
+            str2 = str2.replace(char, "", 1)
+
+        return len(str2) == 0
+
+    valid_phrases = len(passphrases)
+    for phrase in passphrases:
+        words = phrase.split()
+        goto_next_phrase = False
+
+        # Some phrases contain the same word twice
+        if len(set(words)) != len(words):
+            valid_phrases -= 1
+            continue
+
+        # If that is not the case, check if it contains an anagram
+        for word1 in words:
+            if goto_next_phrase:
+                break
+
+            for word2 in set(words) - {word1}:
+                if anagram(word1, word2):
+                    valid_phrases -= 1
+                    goto_next_phrase = True
+                    break
+
+    return valid_phrases
+
+
+def roald8(passphrases: list):
+
+    passphrases_without_anagrams = filter(
+        lambda phrase: len({"".join(sorted(word)) for word in phrase.split()})
+        == len(phrase.split()),
+        passphrases,
+    )
+
+    return len(list(passphrases_without_anagrams))
