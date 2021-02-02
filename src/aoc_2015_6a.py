@@ -8,6 +8,7 @@ a coordinate pair like 0,0 through 2,2 therefore refers to 9 lights in a 3x3 squ
 The lights all start turned off.
 After following the instructions, how many lights are lit?
 """
+import operator
 import numpy as np
 import re
 from collections import defaultdict
@@ -82,3 +83,33 @@ def tom2(instructions: list):
                     grid[(x,y)] *= -1
 
     return sum([val for val in grid.values() if val == 1])
+
+def roald2(instructions: list):
+    def line_parser():
+        pattern = re.compile(r"(\w+) (\d+),(\d+) through (\d+),(\d+)")
+        for line in instructions:
+            action, x1, y1, x2, y2 = re.search(pattern, line).groups()
+
+            if "toggle" in action:
+                action = -1
+            elif "off" in action:
+                action = 0
+            else:
+                action = 1
+
+            yield action, int(x1), int(y1), int(x2), int(y2)
+
+    grid = [False for _ in range(1_000_000)]
+    for action, x1, y1, x2, y2 in line_parser():
+        if action >= 0:
+            for y in range(y1, y2 + 1):
+                grid[y * 1000 + x1 : y * 1000 + x2 + 1] = [
+                    action for _ in range(y * 1000 + x1, y * 1000 + x2 + 1)
+                ]
+        else:
+            for y in range(y1, y2 + 1):
+                grid[y * 1000 + x1 : y * 1000 + x2 + 1] = map(
+                    operator.not_, grid[y * 1000 + x1 : y * 1000 + x2 + 1]
+                )
+
+    return sum(grid)
