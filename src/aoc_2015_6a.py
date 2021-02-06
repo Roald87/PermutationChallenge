@@ -13,6 +13,7 @@ import numpy as np
 import re
 from collections import defaultdict
 
+
 def tom1(instructions: list):
     def line_parser(line):
         expr = "(\w+) (\d+),(\d+) through (\d+),(\d+)"
@@ -59,6 +60,7 @@ def roald1(instructions: list):
 
     return np.sum(grid)
 
+
 def tom2(instructions: list):
     def line_parser(line):
         expr = "(\w+) (\d+),(\d+) through (\d+),(\d+)"
@@ -66,38 +68,39 @@ def tom2(instructions: list):
         return action, int(x1), int(y1), int(x2), int(y2)
 
     # define rectangle on 2 coord
-    grid =  defaultdict(lambda : -1) # start at -1 to indicate off
+    grid = defaultdict(lambda: -1)  # start at -1 to indicate off
     for line in instructions:
         action, x1, y1, x2, y2 = line_parser(line)
         if action == "on":
-            for x in range(x1,x2 + 1):
-                for y in range(y1,y2 + 1):
-                    grid[(x,y)] = 1
+            for x in range(x1, x2 + 1):
+                for y in range(y1, y2 + 1):
+                    grid[(x, y)] = 1
         elif action == "off":
-            for x in range(x1,x2 + 1):
-                for y in range(y1,y2 + 1):
-                    grid[(x,y)] = -1
-        else: #toggle
-            for x in range(x1,x2 + 1):
-                for y in range(y1,y2 + 1):
-                    grid[(x,y)] *= -1
+            for x in range(x1, x2 + 1):
+                for y in range(y1, y2 + 1):
+                    grid[(x, y)] = -1
+        else:  # toggle
+            for x in range(x1, x2 + 1):
+                for y in range(y1, y2 + 1):
+                    grid[(x, y)] *= -1
 
     return sum([val for val in grid.values() if val == 1])
+
 
 def roald2(instructions: list):
     def line_parser():
         pattern = re.compile(r"(\w+) (\d+),(\d+) through (\d+),(\d+)")
         for line in instructions:
-            action, x1, y1, x2, y2 = re.search(pattern, line).groups()
+            mutation, x1, y1, x2, y2 = re.search(pattern, line).groups()
 
-            if "toggle" in action:
-                action = -1
-            elif "off" in action:
-                action = 0
+            if "toggle" in mutation:
+                mutation = -1
+            elif "off" in mutation:
+                mutation = 0
             else:
-                action = 1
+                mutation = 1
 
-            yield action, int(x1), int(y1), int(x2), int(y2)
+            yield mutation, int(x1), int(y1), int(x2), int(y2)
 
     grid = [False for _ in range(1_000_000)]
     for action, x1, y1, x2, y2 in line_parser():
