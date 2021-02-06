@@ -116,3 +116,29 @@ def roald2(instructions: list):
                 )
 
     return sum(grid)
+
+
+def roald3(instructions: list):
+    def line_parser():
+        pattern = re.compile(r"([a-z]+) ([0-9]+),([0-9]+) [a-z]+ ([0-9]+),([0-9]+)")
+        for line in instructions:
+            mutation, x1, y1, x2, y2 = re.search(pattern, line).groups()
+
+            if "toggle" in mutation:
+                mutation = -1
+            else:
+                mutation = "on" in mutation
+
+            yield mutation, int(x1), int(y1), int(x2), int(y2)
+
+    grid = set()
+    for action, x1, y1, x2, y2 in line_parser():
+        coordinates = {(x, y) for x in range(x1, x2 + 1) for y in range(y1, y2 + 1)}
+        if action == 1:
+            grid |= coordinates
+        elif action == 0:
+            grid -= coordinates
+        else:
+            grid ^= coordinates
+
+    return len(grid)
