@@ -1,0 +1,21 @@
+"""
+Count from 1 to 30, replacing any number divisible by three with the word "Fizz", and any number
+divisible by five with the word "Buzz". If is divisible by three _and_ five replace the number by
+FizzBuzz.
+"""
+
+
+def roald1():
+    answer = ""
+    for i in range(1, 31):
+        if i % 3 == 0:
+            answer += "Fizz"
+        if i % 5 == 0:
+            answer += "Buzz"
+
+        if not (i % 3 == 0) and not (i % 5 == 0):
+            answer += str(i)
+
+        answer += " "
+
+    return answer.strip()
