@@ -19,3 +19,19 @@ def roald1():
         answer += " "
 
     return answer.strip()
+
+def tom1():
+    answer = ""
+    for i in range(1, 31):
+        if i % 15 == 0:
+            update = "FizzBuzz"
+        elif i % 3 == 0:
+            update = "Fizz"
+        elif i % 5 == 0:
+            update = "Buzz"
+        else:
+            update = str(i)
+
+        answer += " "+update
+
+    return answer.strip()

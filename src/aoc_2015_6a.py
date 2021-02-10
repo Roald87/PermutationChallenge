@@ -13,7 +13,6 @@ import numpy as np
 import re
 from collections import defaultdict
 
-
 def tom1(instructions: list):
     def line_parser(line):
         expr = "(\w+) (\d+),(\d+) through (\d+),(\d+)"
@@ -116,6 +115,7 @@ def roald2(instructions: list):
                 )
 
     return sum(grid)
+
 
 
 def roald3(instructions: list):
