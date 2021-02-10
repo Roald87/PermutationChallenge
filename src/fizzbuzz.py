@@ -20,6 +20,7 @@ def roald1():
 
     return answer.strip()
 
+
 def tom1():
     answer = ""
     for i in range(1, 31):
@@ -32,6 +33,27 @@ def tom1():
         else:
             update = str(i)
 
-        answer += " "+update
+        answer += " " + update
 
     return answer.strip()
+
+
+def roald2():
+    answer = " ".join(str(i) for i in range(1, 31))
+
+    answer = answer.replace("30", "FizzBuzz")
+    answer = answer.replace("27", "Fizz")
+    answer = answer.replace("25", "Buzz")
+    answer = answer.replace("24", "Fizz")
+    answer = answer.replace("21", "Fizz")
+    answer = answer.replace("20", "Buzz")
+    answer = answer.replace("18", "Fizz")
+    answer = answer.replace("15", "FizzBuzz")
+    answer = answer.replace("12", "Fizz")
+    answer = answer.replace("10", "Buzz")
+    answer = answer.replace(" 9 ", " Fizz ")
+    answer = answer.replace(" 6 ", " Fizz ")
+    answer = answer.replace(" 5 ", " Buzz ")
+    answer = answer.replace(" 3 ", " Fizz ")
+
+    return answer
