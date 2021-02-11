@@ -71,3 +71,24 @@ def tom2():
         return update
     str_list = [fizzbuzz(i) for i in range(1,31)]
     return " ".join(str_list)
+
+def roald3():
+    def digit_sum(number: int):
+        return sum(int(digit) for digit in str(number))
+
+    answer = ""
+    for i in range(1, 31):
+        div_by_three = digit_sum(i) in [3, 6, 9]
+        if div_by_three:
+            answer += "Fizz"
+
+        div_by_five = "0" in str(i) or "5" in str(i)
+        if div_by_five:
+            answer += "Buzz"
+
+        if not (div_by_three or div_by_five):
+            answer += str(i)
+
+        answer += " "
+
+    return answer.strip()
