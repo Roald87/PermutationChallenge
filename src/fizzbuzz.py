@@ -57,3 +57,17 @@ def roald2():
     answer = answer.replace(" 3 ", " Fizz ")
 
     return answer
+
+def tom2():
+    def fizzbuzz(i):
+        if i % 15 == 0:
+            update = "FizzBuzz"
+        elif i % 3 == 0:
+            update = "Fizz"
+        elif i % 5 == 0:
+            update = "Buzz"
+        else:
+            update = str(i)
+        return update
+    str_list = [fizzbuzz(i) for i in range(1,31)]
+    return " ".join(str_list)
