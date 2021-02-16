@@ -58,6 +58,7 @@ def roald2():
 
     return answer
 
+
 def tom2():
     def fizzbuzz(i):
         if i % 15 == 0:
@@ -69,8 +70,10 @@ def tom2():
         else:
             update = str(i)
         return update
-    str_list = [fizzbuzz(i) for i in range(1,31)]
+
+    str_list = [fizzbuzz(i) for i in range(1, 31)]
     return " ".join(str_list)
+
 
 def roald3():
     def digit_sum(number: int):
@@ -93,9 +96,12 @@ def roald3():
 
     return answer.strip()
 
+
 def tom3():
     def is_prime(i: int):
-        mod_sum = [i % j for j in range(1,i-1)] #prime nr will never get a zero except for 1
+        mod_sum = [
+            i % j for j in range(1, i - 1)
+        ]  # prime nr will never get a zero except for 1
         zero_mod_sum = len([el for el in mod_sum if el == 0])
         if zero_mod_sum > 1:
             return False
@@ -108,15 +114,31 @@ def tom3():
         else:
             return False
 
-    fizzbuzz_list = ['Fizz', 'Buzz', 'Fizz','Fizz', 'Buzz','Fizz','FizzBuzz']
+    fizzbuzz_list = ["Fizz", "Buzz", "Fizz", "Fizz", "Buzz", "Fizz", "FizzBuzz"]
 
     answer = ""
     fizzbuzz_ind = 0
     for i in range(1, 31):
-        if (is_prime(i) and i not in [3,5]) or is_even_not_mult_3_5(i):
+        if (is_prime(i) and i not in [3, 5]) or is_even_not_mult_3_5(i):
             update = str(i)
         else:
             update = fizzbuzz_list[fizzbuzz_ind]
             fizzbuzz_ind = (fizzbuzz_ind + 1) % len(fizzbuzz_list)
         answer += " " + update
     return answer.strip()
+
+
+def roald4():
+    one_till_thirty = [*range(1, 31)]
+    answer = ["" for _ in range(30)]
+    for i in one_till_thirty[2::3]:
+        answer[i - 1] = "Fizz"
+
+    for i in one_till_thirty[4::5]:
+        answer[i - 1] += "Buzz"
+
+    for i in one_till_thirty:
+        if len(answer[i - 1]) == 0:
+            answer[i - 1] = str(i)
+
+    return " ".join(answer)
