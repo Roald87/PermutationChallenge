@@ -92,3 +92,31 @@ def roald3():
         answer += " "
 
     return answer.strip()
+
+def tom3():
+    def is_prime(i: int):
+        mod_sum = [i % j for j in range(1,i-1)] #prime nr will never get a zero except for 1
+        zero_mod_sum = len([el for el in mod_sum if el == 0])
+        if zero_mod_sum > 1:
+            return False
+        else:
+            return True
+
+    def is_even_not_mult_3_5(i: int):
+        if i % 2 == 0 and i % 3 != 0 and i % 5 != 0:
+            return True
+        else:
+            return False
+
+    fizzbuzz_list = ['Fizz', 'Buzz', 'Fizz','Fizz', 'Buzz','Fizz','FizzBuzz']
+
+    answer = ""
+    fizzbuzz_ind = 0
+    for i in range(1, 31):
+        if (is_prime(i) and i not in [3,5]) or is_even_not_mult_3_5(i):
+            update = str(i)
+        else:
+            update = fizzbuzz_list[fizzbuzz_ind]
+            fizzbuzz_ind = (fizzbuzz_ind + 1) % len(fizzbuzz_list)
+        answer += " " + update
+    return answer.strip()
