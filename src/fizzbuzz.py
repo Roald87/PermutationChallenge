@@ -166,3 +166,18 @@ def tom4():
         ans += " " + next(fb)
 
     return ans.strip()
+
+def roald5():
+    fizz_map = {i: "Fizz" for i in range(3, 31, 3)}
+    buzz_map = {i: "Buzz" for i in range(5, 31, 5)}
+
+    answer = ["" for _ in range(30)]
+    for i in range(1, 31):
+        answer[i - 1] += fizz_map.get(i, "")
+        try:
+            answer[i - 1] += buzz_map[i]
+        except KeyError:
+            if not answer[i - 1]:
+                answer[i - 1] = str(i)
+
+    return " ".join(answer)
