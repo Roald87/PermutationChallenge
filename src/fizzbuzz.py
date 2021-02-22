@@ -142,3 +142,27 @@ def roald4():
             answer[i - 1] = str(i)
 
     return " ".join(answer)
+
+
+def tom4():
+    def fizz_buzz_gen():
+        num = 1
+        while True:
+            if num % 15 == 0:
+                update = "FizzBuzz"
+            elif num % 3 == 0:
+                update = "Fizz"
+            elif num % 5 == 0:
+                update = "Buzz"
+            else:
+                update = str(num)
+            yield update
+            num += 1
+
+
+    ans = ""
+    fb = fizz_buzz_gen()
+    for _ in range(1,31):
+        ans += " " + next(fb)
+
+    return ans.strip()
