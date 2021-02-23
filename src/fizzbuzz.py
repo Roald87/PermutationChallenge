@@ -159,13 +159,13 @@ def tom4():
             yield update
             num += 1
 
-
     ans = ""
     fb = fizz_buzz_gen()
-    for _ in range(1,31):
+    for _ in range(1, 31):
         ans += " " + next(fb)
 
     return ans.strip()
+
 
 def roald5():
     fizz_map = {i: "Fizz" for i in range(3, 31, 3)}
@@ -181,3 +181,16 @@ def roald5():
                 answer[i - 1] = str(i)
 
     return " ".join(answer)
+
+
+def roald6():
+    return " ".join(
+        str(i)
+        if (i % 3 != 0) and (i % 5 != 0)
+        else "Fizz"
+        if i % 5 != 0
+        else "Buzz"
+        if i % 3 != 0
+        else "FizzBuzz"
+        for i in range(1, 31)
+    )
