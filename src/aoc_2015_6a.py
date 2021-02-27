@@ -13,9 +13,10 @@ import numpy as np
 import re
 from collections import defaultdict
 
+
 def tom1(instructions: list):
     def line_parser(line):
-        expr = "(\w+) (\d+),(\d+) through (\d+),(\d+)"
+        expr = r"(\w+) (\d+),(\d+) through (\d+),(\d+)"
         action, x1, y1, x2, y2 = re.search(expr, line).groups()
         return action, int(x1), int(y1), int(x2), int(y2)
 
@@ -62,7 +63,7 @@ def roald1(instructions: list):
 
 def tom2(instructions: list):
     def line_parser(line):
-        expr = "(\w+) (\d+),(\d+) through (\d+),(\d+)"
+        expr = r"(\w+) (\d+),(\d+) through (\d+),(\d+)"
         action, x1, y1, x2, y2 = re.search(expr, line).groups()
         return action, int(x1), int(y1), int(x2), int(y2)
 
@@ -115,7 +116,6 @@ def roald2(instructions: list):
                 )
 
     return sum(grid)
-
 
 
 def roald3(instructions: list):
