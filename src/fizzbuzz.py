@@ -200,10 +200,10 @@ def roald7():
     fizzbuzz = [*range(1, 31)]
     fizzbuzz = map(lambda x: "FizzBuzz" if x % 15 == 0 else x, fizzbuzz)
     fizzbuzz = map(
-        lambda x: "Buzz" if (type(x) == int) and (x % 5 == 0) else x, fizzbuzz
+        lambda x: "Buzz" if (type(x) is int) and (x % 5 == 0) else x, fizzbuzz
     )
     fizzbuzz = map(
-        lambda x: "Fizz" if (type(x) == int) and (x % 3 == 0) else x, fizzbuzz
+        lambda x: "Fizz" if (type(x) is int) and (x % 3 == 0) else x, fizzbuzz
     )
     fizzbuzz = map(str, fizzbuzz)
 
