@@ -208,3 +208,18 @@ def roald7():
     fizzbuzz = map(str, fizzbuzz)
 
     return " ".join(fizzbuzz)
+
+
+def roald8():
+    def fizzbuzz_gen():
+        for i in range(1, 31):
+            if i % 15 == 0:
+                yield "FizzBuzz"
+            elif i % 5 == 0:
+                yield "Buzz"
+            elif i % 3 == 0:
+                yield "Fizz"
+            else:
+                yield str(i)
+
+    return " ".join(i for i in fizzbuzz_gen())
