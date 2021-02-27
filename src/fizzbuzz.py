@@ -186,7 +186,7 @@ def roald5():
 def roald6():
     return " ".join(
         str(i)
-        if (i % 3 != 0) and (i % 5 != 0)
+        if 0 not in (i % 3, i % 5)
         else "Fizz"
         if i % 5 != 0
         else "Buzz"
